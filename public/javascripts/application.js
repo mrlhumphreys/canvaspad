@@ -56,6 +56,11 @@ var CanvasPad = {
     $('#canvaspad').mousemove(function(event) {
       Brush.px = Brush.x;
       Brush.py = Brush.y;
+      if ( typeof event.offsetX == 'undefined' && typeof event.offsetY == 'undefined' ) {
+        var offset = $(event.target).offset(false);
+        event.offsetX = event.pageX - offset.left;
+        event.offsetY = event.pageY - offset.top;
+      }
       Brush.x = event.offsetX;
       Brush.y = event.offsetY;
     });
